@@ -1,10 +1,9 @@
-
-
 const path = require('path');
 const express = require('express');
 const router = express.Router();
 const di = require('core/di');
 const config = require('./config');
+const rootConfig = require('../../config');
 const moduleName = require('./module-name');
 const controllers = require('./controllers');
 const {api} = controllers;
@@ -14,6 +13,14 @@ const extendDi = require('core/extendModuleDi');
 const staticRouter = require('lib/util/staticRouter');
 const extViews = require('lib/util/extViews');
 const accessResources = require('./access-resources');
+const errorSetup = require('core/error-setup');
+const i18nSetup = require('core/i18n-setup');
+const strings = require('core/strings');
+
+const lang = config.lang || rootConfig.lang || 'ru';
+const i18nDir = path.join(__dirname, 'i18n');
+errorSetup(lang, i18nDir);
+i18nSetup(lang, config.i18n || i18nDir, moduleName);
 
 router.get('/', controllers.dashboard);
 router.get('/dashboard', controllers.dashboard);
@@ -86,6 +93,8 @@ app.use(`/${moduleName}`, express.static(path.join(__dirname, 'view/static')));
 app.engine('ejs', require('ejs-locals'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'view/templates'));
+app.locals.s = strings.s;
+app.locals.__ = (str, params) => strings.s(moduleName, str, params);
 
 app._init = () => new Promise((resolve, reject) => {
   di(moduleName, extendDi(moduleName, config.di), {module: app}, 'app', [], `modules/${moduleName}`).then((scope) => {

@@ -6,6 +6,7 @@ const accessResources = require('../../../access-resources');
 const Permissions = require('core/Permissions');
 const respond = require('../../../backend/respond');
 const moduleName = require('../../../module-name');
+const __ = require('core/strings').unprefix('i18n');
 
 exports.syncAcl = function (req, res) {
   ionAdmin.can(req, res, accessResources.securitySync.id, Permissions.WRITE).then(() => {
@@ -15,7 +16,7 @@ exports.syncAcl = function (req, res) {
         if (err) {
           return res.status(400).send(err.toString());
         }
-        res.send('Синхронизация прав доступа успешно проведена');
+        res.send(__('Синхронизация прав доступа успешно проведена'));
       }
     );
   }).catch((err) => {
@@ -41,7 +42,7 @@ exports.importResources = function (req, res) {
               console.error(err);
               return res.status(400).send(err.toString());
             }
-            res.send('Импорт ресурсов успешно проведен');
+            res.send(__('Импорт ресурсов успешно проведен'));
           }
         );
       } catch (err) {

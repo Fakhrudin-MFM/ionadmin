@@ -1,68 +1,68 @@
-'use strict';
+const __ = require('core/strings').unprefix('i18n');
 
 module.exports = {
   dashboard: {
     id: 'ionadmin:::dashboard',
-    name: 'Контрольная панель'
+    name: __('Контрольная панель')
   },
   securityUsers: {
     id: 'ionadmin:::security-users',
-    name: 'Безопасность Пользователи'
+    name: __('Безопасность Пользователи')
   },
   securityRoles: {
     id: 'ionadmin:::security-roles',
-    name: 'Безопасность Роли'
+    name: __('Безопасность Роли')
   },
   securityResources: {
     id: 'ionadmin:::security-resources',
-    name: 'Безопасность Ресурсы'
+    name: __('Безопасность Ресурсы')
   },
   securitySync: {
     id: 'ionadmin:::security-sync',
-    name: 'Безопасность Синхронизация'
+    name: __('Безопасность Синхронизация')
   },
   profilingSlowQuery: {
     id: 'ionadmin:::profiling-slow-query',
-    name: 'Профилирование Медленные запросы'
+    name: __('Профилирование Медленные запросы')
   },
   activity: {
     id: 'ionadmin:::activity',
-    name: 'Активность'
+    name: __('Активность')
   },
   changelog: {
     id: 'ionadmin:::changelog',
-    name: 'Журнал изменений'
+    name: __('Журнал изменений')
   },
   accesslog: {
     id: 'ionadmin:::accesslog',
-    name: 'Журнал разрешений'
+    name: __('Журнал разрешений')
   },
   authlog: {
     id: 'ionadmin:::authlog',
-    name: 'Журнал доступа'
+    name: __('Журнал доступа')
   },
   token: {
     id: 'ionadmin:::token',
-    name: 'Генератор токенов безопасности'
+    name: __('Генератор токенов безопасности')
   },
   backup: {
     id: 'ionadmin:::backup',
-    name: 'Резервирование'
+    name: __('Резервирование')
   },
   schedule: {
     id: 'ionadmin:::schedule',
-    name: 'Задания по расписанию'
+    name: __('Задания по расписанию')
   },
   wstoken: {
     id: 'ws:::gen-ws-token',
-    name: 'Генерация токенов безопасности посредством веб-сервисов'
+    name: __('Генерация токенов безопасности посредством веб-сервисов')
   },
   recache: {
     id: 'ionadmin:::recache',
-    name: 'Пересчет кешей семантики'
+    name: __('Пересчет кешей семантики')
   },
   notify: {
     id: 'ionadmin:::notify',
-    name: 'Уведомления'
+    name: __('Уведомления')
   }
 };

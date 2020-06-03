@@ -5,12 +5,13 @@ const accessResources = require('../../access-resources');
 const Permissions = require('core/Permissions');
 const model = "security/user";
 const path = `${model}/`;
+const __ = require('core/strings').unprefix('i18n');
 
 exports.index = function (req, res) {
   ionAdmin.can(req, res, accessResources.securityUsers.id).then(permissions => {
     ionAdmin.render(path, {
       req, res,
-      title: 'Пользователи',
+      title: __('Пользователи'),
       pageCode: model,
       permissions
     });
@@ -23,7 +24,7 @@ exports.create = function (req, res) {
   ionAdmin.can(req, res, accessResources.securityUsers.id, Permissions.WRITE).then(permissions => {
     ionAdmin.render(`${path}form`, {
       req, res,
-      title: 'Создать пользователя',
+      title: __('Создать пользователя'),
       pageCode: model,
       scenario: 'create',
       permissions
@@ -37,7 +38,7 @@ exports.update = function (req, res) {
   ionAdmin.can(req, res, accessResources.securityUsers.id, Permissions.WRITE).then(permissions => {
     ionAdmin.render(`${path}form`, {
       req, res,
-      title: 'Редактировать пользователя',
+      title: __('Редактировать пользователя'),
       pageCode: model,
       scenario: 'update',
       permissions

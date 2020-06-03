@@ -4,6 +4,8 @@ const path = require('path');
 const ionAdmin = require('../../../index');
 const accessResources = require('../../../access-resources');
 const Permissions = require('core/Permissions');
+const IonError = require('core/IonError');
+const Errors = require('../../../errors/controllers');
 
 exports.list = function (req, res) {
   ionAdmin.can(req, res, accessResources.backup.id, Permissions.READ).then(() => {
@@ -100,7 +102,7 @@ exports.delete = function (req, res) {
     let scope = ionAdmin.getScope();
     let names = req.body.names;
     if (!(names instanceof Array)) {
-      throw new Error('Параметр должен быть массивом');
+      throw new IonError(Errors.ARRAY);
     }
     return scope.backupProvider.delete(names)
       .then(() => {

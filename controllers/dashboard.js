@@ -7,6 +7,7 @@ const accessResources = require('../access-resources');
 const moduleName = require('../module-name');
 const respond = require('../backend/respond');
 const onError = require('../backend/error');
+const __ = require('core/strings').unprefix('i18n');
 
 module.exports = function (req, res, next) {
   ionAdmin.can(req, res, accessResources.dashboard.id).then(()=> {
@@ -14,7 +15,7 @@ module.exports = function (req, res, next) {
       try {
         let params = {
           req, res,
-          title: 'Контрольная панель',
+          title: __('Контрольная панель'),
           modules: [],
           currentModule: req.cookies ? req.cookies['ionadmin-dashboard-module'] : '',
           currentApp: moduleName,
@@ -51,7 +52,7 @@ module.exports = function (req, res, next) {
               });
             });
           } catch (err) {
-            params.error = `${selModule} module not installed`;
+            params.error = __('%selModule module not installed', {selModule});
             ionAdmin.render(TEMPLATE, params);
           }
         } else {

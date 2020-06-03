@@ -2,13 +2,14 @@
 
 const ionAdmin = require('../../index');
 const accessResources = require('../../access-resources');
+const __ = require('core/strings').unprefix('i18n');
 
 exports.sync = function (req, res) {
   ionAdmin.can(req, res, accessResources.securitySync.id).then(permissions => {
     try {
       ionAdmin.render('security/sync', {
         req, res,
-        title: 'Синхронизация',
+        title: __('Синхронизация'),
         permissions
       });
     } catch (err) {

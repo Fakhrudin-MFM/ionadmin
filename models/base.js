@@ -1,4 +1,4 @@
-'use strict';
+const __ = require('core/strings').unprefix('i18n');
 
 module.exports = class Base {
 
@@ -73,7 +73,7 @@ module.exports = class Base {
 
   validateRequire (attrName, data, cb, msg) {
     if (data[attrName] === undefined || data[attrName] === null || data[attrName] === '') {
-      cb(msg ?  msg : `Поле <b>${attrName}</b> обязательно для заполнения`);
+      cb(msg ?  msg : __('Поле <b>%attrName</b> обязательно для заполнения', {attrName}));
     } else {
       cb();
     }
@@ -85,7 +85,7 @@ module.exports = class Base {
       if (err) {
         cb(err);
       } else if (docs.length > 0) {
-        cb(docs[0]._id.toString() != id ? (msg ?  msg : (`Значение поля <b>${attrName}</b> уже используется`)) : null);
+        cb(docs[0]._id.toString() != id ? (msg ?  msg : (__('Значение поля <b>%attrName</b> уже используется', {attrName}))) : null);
       } else {
         cb();
       }
